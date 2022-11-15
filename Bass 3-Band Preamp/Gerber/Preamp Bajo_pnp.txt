@@ -1,0 +1,74 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Preamp Bajo
+*Date=08:28:49
+*CreatedBy=Fritzing 0.9.10b.2022-05-14.CD-1801-0-29c2cede
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;100nF;200 mil [THT, multilayer];14.5587;-10.5201;0;Bottom;C10
+2;;;19.7104;-5.4713;0;Bottom;Copper Fill18
+3;220;1206 [SMD];9.16117;-13.0977;-90;Top;R11
+4;;;9.1186;-3.3885;0;Bottom;Copper Fill3
+5;10k;1206 [SMD];26.2688;-11.1552;180;Top;R3
+6;220;1206 [SMD];17.4163;-6.67263;90;Top;R15
+7;;;33.7566;-26.4009;0;Bottom;Copper Fill1
+8;;;26.6236;-20.9977;0;Bottom;Via1
+9;220;1206 [SMD];17.4163;-17.1501;90;Top;R8
+10;220;1206 [SMD];3.72617;-20.3627;180;Top;R14
+11;;;17.9324;-14.9709;0;Bottom;Copper Fill2
+12;;THT;33.6087;-7.34511;180;Bottom;J1
+13;;;19.177;-25.6643;0;Bottom;Copper Fill7
+14;;;14.7574;-2.6265;0;Bottom;Copper Fill4
+15;100nF;200 mil [THT, multilayer];7.89116;-18.1401;0;Bottom;C8
+16;;;16.383;-25.6389;0;Bottom;Copper Fill8
+17;100nF;200 mil [THT, multilayer];7.57366;-26.7126;0;Bottom;C6
+18;100nF;200 mil [THT, multilayer];6.93866;-8.93261;0;Bottom;C9
+19;;;30.3784;-10.3862;0;Bottom;Copper Fill20
+20;220;1206 [SMD];33.6088;-15.3202;90;Bottom;R16
+21;;;26.3061;-13.0602;0;Bottom;Via3
+22;;;31.1912;-11.1863;0;Bottom;Copper Fill21
+23;2.2M;1206 [SMD];26.6238;-17.5427;90;Bottom;R5
+24;;THT;17.7337;-26.7126;0;Bottom;J3
+25;;;5.5372;-8.5447;0;Bottom;Copper Fill16
+26;500k;1206 [SMD];31.0688;-17.8602;-90;Top;R2
+27;;;19.304;-20.1017;0;Bottom;Copper Fill11
+28;100nF;200 mil [THT, multilayer];4.71616;-4.17011;0;Bottom;C11
+29;;;17.9324;-14.9709;0;Bottom;Copper Fill14
+30;8.2nF;200 mil [THT, multilayer];30.4337;-8.61511;90;Bottom;C1
+31;;;19.6386;-20.9977;0;Bottom;Via2
+32;;;21.7424;-7.3509;0;Bottom;Copper Fill17
+33;;;1.7526;-1.6613;0;Bottom;Copper Fill5
+34;;;33.6086;-18.7752;0;Bottom;Via4
+35;;;33.4264;-26.4009;0;Bottom;Copper Fill6
+36;;THT;31.7037;-27.9826;0;Bottom;J2
+37;;;19.5326;-22.2861;0;Bottom;Copper Fill9
+38;2.2M;1206 [SMD];23.0937;-20.9977;0;Bottom;R4
+39;;;34.544;-20.4573;0;Bottom;Copper Fill10
+40;;SO;23.1312;-17.6958;0;Top;IC2
+41;130k;1206 [SMD];19.9562;-5.47761;-90;Top;R1
+42;;;10.8204;-12.1515;0;Bottom;Copper Fill19
+43;100nF;1206 [SMD, multilayer];19.9562;-10.5576;-90;Top;C13
+44;220;1206 [SMD];3.72617;-15.9177;180;Top;R13
+45;1µF;100 mil [THT, electrolytic];21.8612;-26.7126;180;Bottom;C5
+46;;;33.5534;-9.5734;0;Bottom;Copper Fill22
+47;0.5W;THT;14.565;-24.179;-90;Bottom;R6
+48;0.1nF;200 mil [THT, multilayer];28.8462;-17.5051;-90;Bottom;C7
+49;100nF;200 mil [THT, multilayer];25.3537;-6.07511;0;Bottom;C2
+50;;;9.0424;-13.0913;0;Bottom;Copper Fill13
+51;1µF;100 mil [THT, electrolytic];32.7106;-23.8006;45;Bottom;C12
+52;;;26.8986;-14.2851;0;Bottom;Copper Fill12
+53;;;20.8026;-11.0085;0;Bottom;Copper Fill15
+54;220;1206 [SMD];3.48365;-6.07517;0;Top;R12
+55;1µF;100 mil [THT, electrolytic];27.2587;-25.4426;90;Bottom;C4
+56;0.5W;THT;14.565;-15.6065;-90;Bottom;R9
+57;100nF;200 mil [THT, multilayer];25.3537;-8.61511;180;Bottom;C3
+58;220;1206 [SMD];2.17616;-25.4051;90;Top;R7
+59;0.5W;THT;14.565;-5.12896;-90;Bottom;R10

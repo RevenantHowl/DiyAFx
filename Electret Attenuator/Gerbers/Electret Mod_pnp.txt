@@ -1,0 +1,26 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Electret Mod
+*Date=01:56:13
+*CreatedBy=Fritzing 0.9.10b.2022-05-14.CD-1801-0-29c2cede
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;THT;11.4381;-8.10394;-90;Bottom;J1
+2;1µF;B 3528 [SMD, tantalum];8.66814;-2.70643;180;Bottom;C1
+3;;;20.0106;-2.70644;0;Bottom;GND
+4;220;1206 [SMD];4.45314;-3.30394;90;Bottom;R3
+5;220;1206 [SMD];8.54314;-5.56394;-180;Bottom;R1
+6;;;1.59564;-8.73894;0;Bottom;D
+7;;;1.59564;-1.75394;0;Bottom;GND
+8;;;1.59564;-5.24644;0;Bottom;S
+9;1µF;B 3528 [SMD, tantalum];14.5256;-2.70644;0;Bottom;C2
+10;220;1206 [SMD];14.3331;-5.56394;0;Bottom;R2
+11;;;20.0106;-7.46894;0;Bottom;Mic

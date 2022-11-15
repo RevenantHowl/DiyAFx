@@ -1,0 +1,73 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Slave
+*Date=08:09:32
+*CreatedBy=Fritzing 0.9.10b.2022-05-14.CD-1801-0-29c2cede
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;42.1346;-32.2168;0;Bottom;Via11
+2;;;47.8409;-16.2197;0;Bottom;Copper Fill21
+3;;;47.8409;-17.8453;0;Bottom;Copper Fill28
+4;;;47.8409;-17.8453;0;Bottom;Copper Fill20
+5;;;28.829;-6.8345;0;Bottom;Copper Fill16
+6;;;49.7424;-14.4177;0;Bottom;Via3
+7;;dip;49.1072;-7.43273;90;Bottom;ATmega 328p
+8;;;40.2209;-16.2197;0;Bottom;Copper Fill32
+9;;;36.6776;-16.9436;0;Bottom;Copper Fill9
+10;;hc49u-v;3.40755;-31.7059;-90;Bottom;8MHz
+11;;;17.8181;-3.6468;0;Bottom;Copper Fill36
+12;;;24.9774;-8.70263;0;Bottom;Via4
+13;;;37.592;-24.3604;0;Bottom;Copper Fill4
+14;;;37.6936;-5.2851;0;Bottom;Copper Fill18
+15;;;35.1374;-16.9577;0;Bottom;Via2
+16;;;40.8894;-30.9715;0;Bottom;Via12
+17;100nF;100 mil [THT, multilayer];41.5028;-16.9739;0;Bottom;C1
+18;;;55.5244;-18.6454;0;Bottom;Copper Fill14
+19;;;40.1955;-25.1478;0;Bottom;Copper Fill37
+20;;hc49u-v;8.48755;-31.7059;-90;Bottom;16MHz
+21;;;7.1628;-27.8656;0;Bottom;Copper Fill2
+22;;;45.3175;-24.5939;0;Bottom;Via10
+23;;;7.3406;-35.5872;0;Bottom;Copper Fill1
+24;;;47.8409;-16.2197;0;Bottom;Copper Fill29
+25;;;48.6283;-16.9817;0;Bottom;Copper Fill22
+26;;;35.2044;-21.16;0;Bottom;Copper Fill19
+27;;;5.8166;-12.651;0;Bottom;Copper Fill12
+28;;;48.6283;-16.9817;0;Bottom;Copper Fill30
+29;;;17.3355;-4.1802;0;Bottom;Copper Fill34
+30;;;16.8021;-3.6468;0;Bottom;Copper Fill35
+31;;;41.5036;-24.3604;0;Bottom;Copper Fill5
+32;;;31.0896;-21.1854;0;Bottom;Copper Fill8
+33;;;40.2209;-16.2197;0;Bottom;Copper Fill24
+34;;pdpi;38.9472;-30.2927;-90;Bottom;ATmega 16/32
+35;;;31.0134;-24.3604;0;Bottom;Copper Fill3
+36;;;7.84399;-1.73738;0;Bottom;Via5
+37;;;44.0436;-24.3604;0;Bottom;Copper Fill6
+38;;;17.3574;-3.62263;0;Bottom;Via6
+39;;;47.8374;-8.70263;0;Bottom;Via8
+40;;;35.2044;-21.16;0;Bottom;Copper Fill27
+41;;;40.8178;-5.9455;0;Bottom;Copper Fill17
+42;;THT;5.94755;-24.5939;-90;Bottom;J2
+43;100nF;100 mil [THT, multilayer];46.5828;-16.9739;0;Bottom;C2
+44;;;30.099;-13.4892;0;Bottom;Copper Fill11
+45;;;28.8036;-20.9568;0;Bottom;Copper Fill7
+46;;;39.3827;-16.9817;0;Bottom;Copper Fill25
+47;;;44.0436;-19.7376;0;Bottom;Copper Fill10
+48;;THT;8.48755;-6.1789;0;Bottom;. ICSP
+49;;;40.2209;-17.8453;0;Bottom;Copper Fill31
+50;;;37.0424;-18.8627;0;Bottom;Via1
+51;;;17.0688;-14.7592;0;Bottom;Copper Fill15
+52;;;44.0436;-14.175;0;Bottom;Copper Fill13
+53;;;40.2174;-24.5777;0;Bottom;Via7
+54;;;40.2209;-17.8453;0;Bottom;Copper Fill23
+55;;;43.2562;-27.383;0;Bottom;Copper Fill26
+56;;THT;5.94755;-39.1989;-90;Bottom;J3
+57;;;42.7775;-24.5939;0;Bottom;Via9
+58;;;39.3827;-16.9817;0;Bottom;Copper Fill33

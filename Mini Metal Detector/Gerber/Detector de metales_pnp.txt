@@ -1,0 +1,55 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Detector de metales
+*Date=14:24:24
+*CreatedBy=Fritzing 0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;12.8524;-14.2149;0;Bottom;Copper Fill1
+2;3V;;3.70831;-22.573;180;Bottom;VCC1
+3;;;18.8468;-21.6317;0;Bottom;Copper Fill3
+4;470;THT;19.2983;-13.503;180;Bottom;R2
+5;;;18.5166;-3.4707;0;Bottom;Copper Fill11
+6;2.7k;THT;18.5182;-4.70304;180;Bottom;R6
+7;;;30.0228;-19.9426;0;Bottom;Copper Fill14
+8;;THT;28.5083;-5.10304;0;Bottom;J4
+9;;;14.4018;-19.1679;0;Bottom;Copper Fill5
+10;47nF;200 mil [THT, multilayer];27.8483;-25.903;0;Bottom;C2
+11;;THT;28.5083;-13.563;0;Bottom;J5
+12;10k;THT;18.4982;-7.10303;0;Bottom;R7
+13;;300 mil [THT];21.0929;-21.303;0;Bottom;D2
+14;470;THT;10.7183;-21.303;0;Bottom;R1
+15;;;16.1036;-8.0681;0;Bottom;Copper Fill8
+16;;;20.4978;-7.6871;0;Bottom;Copper Fill9
+17;;TO92 [THT];20.3588;-24.3919;-180;Bottom;Q1
+18;;;28.4734;-19.9426;0;Bottom;Copper Fill13
+19;;;12.3444;-4.5375;0;Bottom;Copper Fill12
+20;;diode-1n4148;18.5183;-2.50304;0;Bottom;D1
+21;;;27.5336;-5.1598;0;Bottom;Copper Fill18
+22;3.3nF;200 mil [THT, multilayer];9.90821;-14.543;90;Bottom;C1
+23;;;23.8506;-21.365;0;Bottom;Copper Fill16
+24;;;31.1404;-25.937;0;Bottom;Copper Fill17
+25;;;18.5182;-9.50305;0;Bottom;JMP1
+26;;5 mm [THT];29.3083;-21.752;180;Bottom;LED1
+27;;;24.8285;-20.4125;0;Bottom;Copper Fill15
+28;;;21.4122;-2.569;0;Bottom;Copper Fill19
+29;;;17.1704;-13.3005;0;Bottom;Copper Fill7
+30;;;29.3624;-2.6198;0;Bottom;Copper Fill20
+31;;;16.0782;-22.8509;0;Bottom;Copper Fill2
+32;;;3.6449;-20.4633;0;Bottom;Copper Fill21
+33;;;26.4668;-14.2149;0;Bottom;Copper Fill4
+34;;;15.24;-15.3833;0;Bottom;Copper Fill6
+35;;THT;4.81636;-14.58;0;Bottom;J2
+36;;TO92 [THT];10.3973;-6.37253;-90;Bottom;Q2
+37;;THT;4.81636;-5.98005;0;Bottom;J3
+38;330;THT;10.7183;-24.103;0;Bottom;R3
+39;;TO92 [THT];14.9588;-17.1919;-180;Bottom;Q3
+40;;;12.3952;-6.9251;0;Bottom;Copper Fill10

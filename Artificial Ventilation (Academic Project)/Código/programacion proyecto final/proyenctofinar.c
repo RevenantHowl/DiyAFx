@@ -1,0 +1,292 @@
+#include <mega32.h>
+#include <delay.h>
+#include <glcd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <font5x7.h>
+
+
+//*******************************************************************************************************
+//************************************VARIABLES GLOBALES*************************************************
+//*******************************************************************************************************
+
+unsigned int Presion=0.0, vel=0.0;
+unsigned int clickencoder=0, count1=0, count2=0, count3=0;
+int estado=0, rpm_max=0, pres_max_glob=0, tiempo_ins_glob=0, tiempo_espera=0, presion_PEEP=0, presion_ins=0, presion_esp=0;
+
+
+
+//*******************************************************************************************************
+//*******************************INTERRUPICON EXTERNA PARA LECTURA DE ENCODER****************************
+//*******************************************************************************************************
+interrupt [EXT_INT0] void ext_int0_isr(void)
+{
+clickencoder++;
+// Place your code here
+
+}
+
+//*******************************************************************************************************
+//****************************************USART**********************************************************
+//*******************************************************************************************************
+#define DATA_REGISTER_EMPTY (1<<UDRE)
+#define RX_COMPLETE (1<<RXC)
+#define FRAMING_ERROR (1<<FE)
+#define PARITY_ERROR (1<<UPE)
+#define DATA_OVERRUN (1<<DOR)
+
+// USART Receiver buffer
+#define RX_BUFFER_SIZE 8
+char rx_buffer[RX_BUFFER_SIZE];
+
+#if RX_BUFFER_SIZE <= 256
+unsigned char rx_wr_index=0,rx_rd_index=0;
+#else
+unsigned int rx_wr_index=0,rx_rd_index=0;
+#endif
+
+#if RX_BUFFER_SIZE < 256
+unsigned char rx_counter=0;
+#else
+unsigned int rx_counter=0;
+#endif
+
+// This flag is set on USART Receiver buffer overflow
+bit rx_buffer_overflow;
+
+// USART Receiver interrupt service routine
+interrupt [USART_RXC] void usart_rx_isr(void)
+{
+char status,data;
+status=UCSRA;
+data=UDR;
+//----------------------------------------------------------------------------------------------------
+
+//aqui va el codigo 
+
+//---------------------------------------------------------------------------------------------------
+
+if ((status & (FRAMING_ERROR | PARITY_ERROR | DATA_OVERRUN))==0)
+   {
+   rx_buffer[rx_wr_index++]=data;
+#if RX_BUFFER_SIZE == 256
+   // special case for receiver buffer size=256
+   if (++rx_counter == 0) rx_buffer_overflow=1;
+#else
+   if (rx_wr_index == RX_BUFFER_SIZE) rx_wr_index=0;
+   if (++rx_counter == RX_BUFFER_SIZE)
+      {
+      rx_counter=0;
+      rx_buffer_overflow=1;
+      }
+#endif
+   }
+}
+
+#ifndef _DEBUG_TERMINAL_IO_
+// Get a character from the USART Receiver buffer
+#define _ALTERNATE_GETCHAR_
+#pragma used+
+char getchar(void)
+{
+char data;
+while (rx_counter==0);
+data=rx_buffer[rx_rd_index++];
+#if RX_BUFFER_SIZE != 256
+if (rx_rd_index == RX_BUFFER_SIZE) rx_rd_index=0;
+#endif
+#asm("cli")
+--rx_counter;
+#asm("sei")
+return data;
+}
+#pragma used-
+#endif
+
+// Standard Input/Output functions
+
+
+//*******************************************************************************************************
+//********************************INTERRUPCIÓN POR OVEWRFLOW DE TIMER 0, CRONOMETROS*********************
+//*******************************************************************************************************
+interrupt [TIM0_OVF] void timer0_ovf_isr(void)
+{
+// Reinitialize Timer 0 value
+TCNT0=0xB2;
+ count1++;
+ count2++;
+// Place your code here 
+if(count1 == 50)
+{
+ vel = clickencoder*5;
+ clickencoder=0;
+ count1=0;
+}
+if(count2 == 10){ count3++; count2=0;}
+
+}
+
+// Voltage Reference: AVCC pin
+#define ADC_VREF_TYPE ((0<<REFS1) | (1<<REFS0) | (0<<ADLAR))
+
+// Read the AD conversion result
+unsigned int read_adc(unsigned char adc_input)
+{
+ADMUX=adc_input | ADC_VREF_TYPE;
+// Delay needed for the stabilization of the ADC input voltage
+delay_us(10);
+// Start the AD conversion
+ADCSRA|=(1<<ADSC);
+// Wait for the AD conversion to complete
+while ((ADCSRA & (1<<ADIF))==0);
+ADCSRA|=(1<<ADIF);
+return ADCW;
+}
+//***********************************************************************************************************************************************************************************
+//************************************FUNCIONES DE ENTRADA/SALIDA********************************************************************************************************************
+//***********************************************************************************************************************************************************************************
+void Speed_Control (unsigned char PWM)   //***********CONTROL DE VELOCIDAD DE MOTOR
+{
+OCR1A = PWM; 
+}
+
+//******************************************************************************************************************************
+void Display_Data (unsigned int RPM, unsigned int PRES, int STATE,int etapa)                                  //****************
+{                                                                                                             //****************
+char texto1[12], texto2[12], texto3[12], texto4[12], texto5[12];                                              //****************
+                                                                                                              //****************
+if(STATE == 1){        sprintf(texto1,"Activo"); }   //****************                                       //****************
+else{                  sprintf(texto1,"Espera");}    //****************                                       //****************
+if(etapa == 0){        sprintf(texto2,"(OFF)"); }    //****************Determinación de mensaje de            //****************
+if(etapa == 1){        sprintf(texto2,"(Ins)"); }    //****************acuerdo a estado y etapa               //****************
+if(etapa == 2){        sprintf(texto2,"(Esp)"); }    //****************                                       //****************
+if(etapa == 3){        sprintf(texto2,"(Peep)"); }   //****************                                       //****************
+                                                                                                              //****************
+sprintf(texto3,"Presion: %d",(unsigned int)PRES);    //****************                                       //****************REPRESENTACIÓN DE DATOS EN DISPLAY
+sprintf(texto4,"Vel: %d",RPM);                       //**************** Creación de strings                   //****************
+sprintf(texto5,"T: %d",(int)tiempo_espera);        //****************                                       //****************
+glcd_clear();                                                                                                              //****************
+glcd_moveto(8,0);   glcd_outtext("Estado:");   //****************                                             //****************
+glcd_moveto(8,10);  glcd_outtext(texto1);      //****************                                             //****************
+glcd_moveto(45,10); glcd_outtext(texto2);      //****************  Coordenadas y escritura en LCD             //****************
+glcd_moveto(8,20);  glcd_outtext(texto3);      //****************                                             //****************
+glcd_moveto(8,30);  glcd_outtext(texto4);      //****************                                             //****************
+glcd_moveto(8,40);  glcd_outtext(texto5);      //****************                                             //****************
+}                                                                                                             //****************
+//******************************************************************************************************************************
+
+
+//******************************************************************************************
+unsigned int leer_presion(void){                                          //****************                                 
+Presion=read_adc(0);                                                      //****************
+//Presion=(Presion*0.488*0.222)+9.3;  /*0.488*0.222*0.01%3d*/             //**************** LECTURA DE SENSOR DE PRESIÓN
+Presion=(Presion*0.488*0.222)+9.3;
+return Presion;                                                           //****************
+}                                                                         //****************
+//******************************************************************************************
+
+//****************************************************************************************************************************************
+void LeerConfig (void)                                                                                                  //****************
+{
+                                                                                                                      //****************
+int i=1;                                                                                                                //****************
+char mensajeconfig[70];                                                                                                 //****************
+//char mensajeconfig[70]="           01,255,080,50,20,536          ";    //*************** Mensaje de prueba            //****************
+char* salida[7];                                                                                                        //****************
+char* token;                                                                                                            //****************
+printf("en espera");                                                                                                                         //****************
+gets(mensajeconfig,70);                                                                                                 //****************
+token = strtok(mensajeconfig, ",");                                      //***************                              //****************
+salida[0]=token;                                                         //***************                              //****************
+   for(i=1;i<=6;i++){                                                    //***************                              //**************** LECTURA DE PARÁMETROS DE INICIALIZACIÓN
+         token = strtok(NULL, ",");                                      //***************  Separación de Variables     //****************
+         salida[i] = token;                                              //***************                              //****************
+   }                                                                     //***************                              //****************
+estado = atoi(salida[0]);                       //***************                                                       //****************
+rpm_max = atoi(salida[1]);                      //***************                                                       //****************
+pres_max_glob = atoi(salida[2]);                //***************                                                       //****************
+tiempo_ins_glob = atoi(salida[3]);              //***************  Conversiones a Entero                                //****************
+presion_PEEP = atoi(salida[4]);                 //***************                                                       //****************
+tiempo_espera = atoi(salida[5]);                //***************                                                       //****************
+}                                                                                                                       //****************
+//****************************************************************************************************************************************
+void Envio_Datos (int etapa){
+printf("Et: %d Vel: %d P: %d \n ",etapa,vel,Presion);
+delay_ms(100);}
+
+
+//*******************************************************************************************************
+//************************************ETAPAS RESPIRATORIAS***********************************************
+//*******************************************************************************************************
+void Inspiracion (unsigned int tiempoins,unsigned int vel_max,unsigned int pres_max_func)
+{
+count3=0;
+do{
+PORTC.0=1;
+PORTC.1=1;
+PORTC.2=0;
+Speed_Control(vel_max);
+presion_ins=leer_presion();
+Display_Data (vel, presion_ins, estado,1);
+Envio_Datos(1);
+}while(count3 < tiempoins || presion_ins < pres_max_func );
+Speed_Control(0);
+}
+
+void Espiracion (unsigned int PEEP)
+{
+Speed_Control(0);
+do{
+PORTC.0=0;
+PORTC.1=0;
+PORTC.2=1;
+presion_esp=leer_presion();
+Display_Data (vel, presion_esp, estado,2);
+Envio_Datos(2);
+}while (presion_esp > PEEP); 
+}
+
+void Wait (unsigned int t_esp)
+{
+count3=0;
+Speed_Control(0);
+do{
+presion_esp=leer_presion();
+PORTC.0=0;
+PORTC.1=0;
+PORTC.2=0;
+Display_Data (vel, presion_esp, estado,3);
+Envio_Datos(3);
+}while (count3 < t_esp);
+}
+//*******************************************************************************************************
+//************************************FUNCION PRINCIPAL**************************************************
+//*******************************************************************************************************
+void main(void)
+{
+#include <ports.h>
+
+
+while (1)
+      {/*if(estado == 1){         
+      Inspiracion(tiempo_ins_glob,rpm_max,pres_max_glob);
+      Wait(tiempo_espera);
+      Espiracion(presion_PEEP);
+      Wait(tiempo_espera);
+      }
+      */  
+      Display_Data (tiempo_ins_glob, presion_esp, estado,0);
+      LeerConfig();
+        do{
+      Inspiracion(tiempo_ins_glob,rpm_max,pres_max_glob);
+      Wait(tiempo_espera);
+      Espiracion(presion_PEEP);
+      Wait(tiempo_espera);
+       }while(estado == 1);
+       
+      
+
+
+      }
+}
